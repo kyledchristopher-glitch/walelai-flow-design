@@ -38,7 +38,7 @@ export const Route = createFileRoute("/")({
 
 function Landing() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground premium-scroll">
       <Nav />
       <Hero />
       <TrustBar />
@@ -59,9 +59,8 @@ function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="#" className="flex items-center gap-2">
-          <Logo />
-          <span className="text-[15px] font-semibold tracking-tight">WalelAI</span>
+        <a href="#" className="flex items-center">
+          <Logo className="h-8 w-auto sm:h-9" />
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
@@ -94,66 +93,37 @@ function Nav() {
   );
 }
 
-function Logo() {
+function Logo({
+  className = "h-9 w-auto",
+  variant = "wordmark",
+}: {
+  className?: string;
+  variant?: "wordmark" | "full";
+}) {
+  const source =
+    variant === "full" ? "/assets/walelai-logo-full.png" : "/assets/walelai-logo-wordmark.png";
+  const dimensions =
+    variant === "full" ? { width: 1080, height: 700 } : { width: 1040, height: 240 };
+
   return (
-    <svg
-      className="h-8 w-9 shrink-0"
-      viewBox="0 0 72 64"
-      role="img"
-      aria-label="WalelAI logo"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient
-          id="walelai-mark-main"
-          x1="8"
-          y1="6"
-          x2="63"
-          y2="58"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#145CFF" />
-          <stop offset="0.52" stopColor="#18C6D4" />
-          <stop offset="1" stopColor="#7C3DFF" />
-        </linearGradient>
-        <linearGradient
-          id="walelai-mark-deep"
-          x1="6"
-          y1="10"
-          x2="42"
-          y2="55"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stopColor="#0A57F5" />
-          <stop offset="1" stopColor="#061B57" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M5 6h14c3.8 0 7.2 2.2 8.8 5.7l11.7 25.5L51.2 11.7C52.8 8.2 56.2 6 60 6h7L45.6 52.1c-3.2 6.9-12.9 7-16.3.2L5 6Z"
-        fill="url(#walelai-mark-main)"
-      />
-      <path
-        d="M5 6h14c3.8 0 7.2 2.2 8.8 5.7l11.7 25.5-6.4 14.1c-1.6 3.6-6.6 3.7-8.4.2L5 6Z"
-        fill="url(#walelai-mark-deep)"
-        opacity="0.9"
-      />
-      <path
-        d="M50.2 28.5 67 58H54.8c-3.3 0-6.4-1.8-8-4.7l-4.5-8 7.9-16.8Z"
-        fill="url(#walelai-mark-main)"
-      />
-      <path
-        d="m39.2 50.6 6.7-14.2 8.1 14.2c1.8 3.1-.5 7-4.1 7H43c-4 0-5.5-3.4-3.8-7Z"
-        fill="#1F65FF"
-      />
-    </svg>
+    <img
+      src={source}
+      alt="WalelAI"
+      className={`block shrink-0 object-contain ${className}`}
+      width={dimensions.width}
+      height={dimensions.height}
+      decoding="async"
+    />
   );
 }
 
 /* ---------- HERO ---------- */
 function Hero() {
   return (
-    <section className="relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
-      <div className="bg-grid absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
+    <section className="section-shell section-hero relative overflow-hidden">
+      <div className="bg-grid parallax-grid absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
+      <div className="parallax-orb parallax-orb-one" />
+      <div className="parallax-orb parallax-orb-two" />
       <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-24 md:pt-28 md:pb-32">
         <div className="mx-auto max-w-3xl text-center animate-fade-up">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1 text-[12px] font-medium text-muted-foreground backdrop-blur">
@@ -190,7 +160,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="relative mx-auto mt-16 max-w-6xl animate-fade-up [animation-delay:120ms]">
+        <div className="motion-depth relative mx-auto mt-16 max-w-6xl animate-fade-up [animation-delay:120ms]">
           <DashboardVisual />
         </div>
       </div>
@@ -470,7 +440,7 @@ function TrustBar() {
     "Process Improvement",
   ];
   return (
-    <section className="border-y border-border bg-background">
+    <section className="section-trust premium-divider border-y border-border bg-background">
       <div className="mx-auto max-w-7xl px-6 py-10">
         <div className="text-center text-[11.5px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
           Capabilities trusted by operations leaders
@@ -522,7 +492,8 @@ function Solutions() {
     },
   ];
   return (
-    <section id="solutions" className="relative bg-background py-24 md:py-32">
+    <section id="solutions" className="section-shell section-solutions relative py-24 md:py-32">
+      <div className="section-drift section-drift-right" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <SectionEyebrow>Solutions</SectionEyebrow>
@@ -539,7 +510,7 @@ function Solutions() {
           {items.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="group relative bg-card p-8 transition-colors hover:bg-muted/30"
+              className="reveal-card group relative bg-card p-8 transition-colors hover:bg-muted/30"
             >
               <div
                 className="grid size-10 place-items-center rounded-lg border border-border"
@@ -580,8 +551,9 @@ function HowItWorks() {
   return (
     <section
       id="how-it-works"
-      className="relative border-t border-border bg-muted/30 py-24 md:py-32"
+      className="section-shell section-process relative border-t border-border py-24 md:py-32"
     >
+      <div className="section-drift section-drift-left" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <SectionEyebrow>How it works</SectionEyebrow>
@@ -601,7 +573,7 @@ function HowItWorks() {
           {steps.map((s) => (
             <div
               key={s.n}
-              className="relative rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-soft)]"
+              className="reveal-card card-surface relative rounded-2xl border border-border bg-card p-8 shadow-[var(--shadow-soft)]"
             >
               <div className="flex items-center gap-3">
                 <div
@@ -635,7 +607,10 @@ function Industries() {
     { icon: Building2, name: "Small & Mid-Sized Businesses" },
   ];
   return (
-    <section id="industries" className="border-t border-border bg-background py-24 md:py-32">
+    <section
+      id="industries"
+      className="section-shell section-industries border-t border-border py-24 md:py-32"
+    >
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
@@ -654,7 +629,7 @@ function Industries() {
           {items.map(({ icon: Icon, name }) => (
             <div
               key={name}
-              className="group flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-[var(--shadow-soft)]"
+              className="reveal-card card-surface group flex items-center gap-4 rounded-xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-[var(--shadow-soft)]"
             >
               <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-muted">
                 <Icon className="size-5 text-foreground/70" strokeWidth={1.75} />
@@ -681,10 +656,10 @@ function ValueSection() {
     { v: "∞", l: "Scale operations efficiently", d: "Systems that grow without linear headcount." },
   ];
   return (
-    <section className="relative overflow-hidden bg-[var(--navy-deep)] py-24 text-[oklch(0.96_0.01_260)] md:py-32">
+    <section className="section-shell section-value relative overflow-hidden bg-[var(--navy-deep)] py-24 text-[oklch(0.96_0.01_260)] md:py-32">
       <div className="bg-grid-dark absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]" />
       <div
-        className="pointer-events-none absolute -top-40 left-1/2 size-[700px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
+        className="parallax-layer pointer-events-none absolute -top-40 left-1/2 size-[700px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
         style={{ background: "var(--gradient-brand)" }}
       />
       <div className="relative mx-auto max-w-7xl px-6">
@@ -701,7 +676,7 @@ function ValueSection() {
 
         <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 md:grid-cols-2 lg:grid-cols-4">
           {metrics.map((m) => (
-            <div key={m.l} className="bg-[var(--navy-deep)] p-7">
+            <div key={m.l} className="reveal-card bg-[var(--navy-deep)] p-7">
               <div
                 className="bg-clip-text text-[44px] font-semibold tracking-tight text-transparent"
                 style={{ backgroundImage: "var(--gradient-cyan)" }}
@@ -746,7 +721,11 @@ function CaseStudies() {
     },
   ];
   return (
-    <section id="outcomes" className="border-t border-border bg-background py-24 md:py-32">
+    <section
+      id="outcomes"
+      className="section-shell section-outcomes border-t border-border py-24 md:py-32"
+    >
+      <div className="section-drift section-drift-right" />
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <SectionEyebrow>Selected work</SectionEyebrow>
@@ -759,7 +738,7 @@ function CaseStudies() {
           {items.map((it) => (
             <article
               key={it.title}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"
+              className="reveal-card card-surface group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-lift)]"
             >
               <div
                 className="relative h-40 overflow-hidden border-b border-border"
@@ -804,17 +783,17 @@ function CaseStudies() {
 /* ---------- FINAL CTA ---------- */
 function FinalCTA() {
   return (
-    <section id="contact" className="bg-background py-24 md:py-32">
+    <section id="contact" className="section-shell section-contact bg-background py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div
-          className="relative overflow-hidden rounded-3xl border border-border p-10 md:p-16"
+          className="motion-depth relative overflow-hidden rounded-3xl border border-border p-10 md:p-16"
           style={{
             background:
               "radial-gradient(800px 400px at 20% 0%, oklch(0.94 0.06 260), transparent 60%), linear-gradient(180deg, var(--card), oklch(0.98 0.01 260))",
           }}
         >
           <div
-            className="pointer-events-none absolute -right-20 -top-20 size-[420px] rounded-full opacity-30 blur-3xl"
+            className="parallax-layer pointer-events-none absolute -right-20 -top-20 size-[420px] rounded-full opacity-30 blur-3xl"
             style={{ background: "var(--gradient-brand)" }}
           />
           <div className="relative max-w-2xl">
@@ -868,13 +847,12 @@ function Footer() {
     { title: "Contact", links: ["Schedule a Consultation", "Support", "Partners", "Security"] },
   ];
   return (
-    <footer className="border-t border-border bg-background">
+    <footer className="section-footer border-t border-border bg-background">
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-6">
           <div className="col-span-2">
-            <div className="flex items-center gap-2">
-              <Logo />
-              <span className="text-[15px] font-semibold tracking-tight">WalelAI</span>
+            <div className="flex items-center">
+              <Logo className="h-24 w-auto sm:h-28" variant="full" />
             </div>
             <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-muted-foreground">
               AI Systems. Better Operations. Real Results.
