@@ -80,11 +80,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Walelai — AI Systems That Make Your Business Run Better" },
       { name: "description", content: "Walelai helps organizations automate workflows, improve operations, and deploy practical AI systems that reduce manual work and increase productivity." },
       { name: "author", content: "Walelai" },
-      { property: "og:title", content: "Walelai — Practical AI for Modern Operations" },
-      { property: "og:description", content: "Automate workflows, deploy AI assistants, and modernize operations with Walelai." },
+      { property: "og:title", content: "Walelai — AI Systems That Make Your Business Run Better" },
+      { property: "og:description", content: "Walelai helps organizations automate workflows, improve operations, and deploy practical AI systems that reduce manual work and increase productivity." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@walelai" },
+      { name: "twitter:title", content: "Walelai — AI Systems That Make Your Business Run Better" },
+      { name: "twitter:description", content: "Walelai helps organizations automate workflows, improve operations, and deploy practical AI systems that reduce manual work and increase productivity." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a85b0868-e95c-4dec-a888-c63509f71c44/id-preview-92bece15--526e0ae6-d971-4088-bbd1-ef43cb8a1bf1.lovable.app-1781294958550.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/a85b0868-e95c-4dec-a888-c63509f71c44/id-preview-92bece15--526e0ae6-d971-4088-bbd1-ef43cb8a1bf1.lovable.app-1781294958550.png" },
     ],
     links: [
       {
