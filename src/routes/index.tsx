@@ -3,17 +3,15 @@ import {
   ArrowRight,
   ArrowUpRight,
   Workflow,
-  Bot,
   FileText,
   Settings2,
   Plug,
   BarChart3,
   Check,
-  Sparkles,
   Building2,
   Stethoscope,
   Landmark,
-  Cpu,
+  MessageSquareText,
   Users,
   Briefcase,
 } from "lucide-react";
@@ -21,13 +19,13 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Walelai — AI Systems That Make Your Business Run Better" },
+      { title: "WalelAI — AI Systems That Make Your Business Run Better" },
       {
         name: "description",
         content:
-          "Walelai helps businesses automate workflows, improve operations, and deploy practical AI systems that save time and increase productivity.",
+          "WalelAI helps businesses automate workflows, improve operations, and implement practical AI solutions that save time, reduce manual work, and increase productivity.",
       },
-      { property: "og:title", content: "Walelai — Practical AI for Modern Operations" },
+      { property: "og:title", content: "WalelAI — Practical AI for Modern Operations" },
       {
         property: "og:description",
         content:
@@ -63,7 +61,7 @@ function Nav() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <a href="#" className="flex items-center gap-2">
           <Logo />
-          <span className="text-[15px] font-semibold tracking-tight">Walelai</span>
+          <span className="text-[15px] font-semibold tracking-tight">WalelAI</span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
@@ -87,7 +85,7 @@ function Nav() {
             href="#contact"
             className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-[13px] font-medium text-background transition-transform hover:scale-[1.02]"
           >
-            Schedule a consultation
+            Schedule a Consultation
             <ArrowRight className="size-3.5" />
           </a>
         </div>
@@ -98,12 +96,56 @@ function Nav() {
 
 function Logo() {
   return (
-    <div
-      className="grid size-7 place-items-center rounded-md"
-      style={{ background: "var(--gradient-brand)" }}
+    <svg
+      className="h-8 w-9 shrink-0"
+      viewBox="0 0 72 64"
+      role="img"
+      aria-label="WalelAI logo"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <div className="size-2.5 rounded-[3px] bg-background/90" />
-    </div>
+      <defs>
+        <linearGradient
+          id="walelai-mark-main"
+          x1="8"
+          y1="6"
+          x2="63"
+          y2="58"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#145CFF" />
+          <stop offset="0.52" stopColor="#18C6D4" />
+          <stop offset="1" stopColor="#7C3DFF" />
+        </linearGradient>
+        <linearGradient
+          id="walelai-mark-deep"
+          x1="6"
+          y1="10"
+          x2="42"
+          y2="55"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#0A57F5" />
+          <stop offset="1" stopColor="#061B57" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M5 6h14c3.8 0 7.2 2.2 8.8 5.7l11.7 25.5L51.2 11.7C52.8 8.2 56.2 6 60 6h7L45.6 52.1c-3.2 6.9-12.9 7-16.3.2L5 6Z"
+        fill="url(#walelai-mark-main)"
+      />
+      <path
+        d="M5 6h14c3.8 0 7.2 2.2 8.8 5.7l11.7 25.5-6.4 14.1c-1.6 3.6-6.6 3.7-8.4.2L5 6Z"
+        fill="url(#walelai-mark-deep)"
+        opacity="0.9"
+      />
+      <path
+        d="M50.2 28.5 67 58H54.8c-3.3 0-6.4-1.8-8-4.7l-4.5-8 7.9-16.8Z"
+        fill="url(#walelai-mark-main)"
+      />
+      <path
+        d="m39.2 50.6 6.7-14.2 8.1 14.2c1.8 3.1-.5 7-4.1 7H43c-4 0-5.5-3.4-3.8-7Z"
+        fill="#1F65FF"
+      />
+    </svg>
   );
 }
 
@@ -119,31 +161,31 @@ function Hero() {
             Practical AI for modern operations
           </div>
           <h1 className="mt-6 text-balance text-[44px] font-semibold leading-[1.05] tracking-tight text-foreground md:text-[68px]">
-            AI systems that make your{" "}
+            AI Systems That Make Your{" "}
             <span
               className="bg-clip-text text-transparent"
               style={{ backgroundImage: "var(--gradient-brand)" }}
             >
-              business run better
+              Business Run Better
             </span>
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-[17px] leading-relaxed text-muted-foreground md:text-[18px]">
-            Walelai helps businesses automate workflows, improve operations, and implement
-            practical AI solutions that save time, reduce manual work, and increase productivity.
+            WalelAI helps businesses automate workflows, improve operations, and implement practical
+            AI solutions that save time, reduce manual work, and increase productivity.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <a
               href="#contact"
               className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-3 text-[14px] font-medium text-background shadow-[var(--shadow-lift)] transition-transform hover:scale-[1.02]"
             >
-              Schedule a consultation
+              Schedule a Consultation
               <ArrowRight className="size-4" />
             </a>
             <a
               href="#solutions"
               className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/80 px-5 py-3 text-[14px] font-medium text-foreground backdrop-blur transition-colors hover:bg-background"
             >
-              See solutions
+              See Solutions
             </a>
           </div>
         </div>
@@ -192,9 +234,7 @@ function DashboardVisual() {
                 <div
                   key={i.label}
                   className={`flex items-center justify-between rounded-md px-3 py-2 text-[12.5px] ${
-                    i.active
-                      ? "bg-primary/10 font-medium text-primary"
-                      : "text-muted-foreground"
+                    i.active ? "bg-primary/10 font-medium text-primary" : "text-muted-foreground"
                   }`}
                 >
                   <span>{i.label}</span>
@@ -251,9 +291,7 @@ function DashboardVisual() {
 
               {/* Pipeline */}
               <div className="rounded-lg border border-border/70 bg-card p-4">
-                <div className="text-[12px] font-medium text-muted-foreground">
-                  Active pipeline
-                </div>
+                <div className="text-[12px] font-medium text-muted-foreground">Active pipeline</div>
                 <div className="mt-3 space-y-2.5">
                   {[
                     { label: "Intake → Triage", pct: 96, tag: "AI routing" },
@@ -323,7 +361,7 @@ function DashboardVisual() {
             className="grid size-8 place-items-center rounded-lg"
             style={{ background: "var(--gradient-brand)" }}
           >
-            <Sparkles className="size-4 text-background" />
+            <Workflow className="size-4 text-background" />
           </div>
           <div>
             <div className="text-[11px] text-muted-foreground">AI suggestion</div>
@@ -376,9 +414,24 @@ function StatCard({
 
 function ChartBars() {
   const data = [
-    [38, 12], [44, 14], [40, 18], [52, 16], [48, 12], [60, 14], [55, 10],
-    [68, 14], [62, 10], [74, 12], [70, 8], [82, 10], [78, 8], [88, 10],
-    [84, 8], [92, 10], [86, 6], [95, 8],
+    [38, 12],
+    [44, 14],
+    [40, 18],
+    [52, 16],
+    [48, 12],
+    [60, 14],
+    [55, 10],
+    [68, 14],
+    [62, 10],
+    [74, 12],
+    [70, 8],
+    [82, 10],
+    [78, 8],
+    [88, 10],
+    [84, 8],
+    [92, 10],
+    [86, 6],
+    [95, 8],
   ];
   const max = 110;
   return (
@@ -424,10 +477,7 @@ function TrustBar() {
         </div>
         <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 text-center md:grid-cols-3 lg:grid-cols-6">
           {items.map((i) => (
-            <div
-              key={i}
-              className="text-[13.5px] font-semibold tracking-tight text-foreground/80"
-            >
+            <div key={i} className="text-[13.5px] font-semibold tracking-tight text-foreground/80">
               {i}
             </div>
           ))}
@@ -446,7 +496,7 @@ function Solutions() {
       desc: "Automate repetitive business processes and reduce manual effort.",
     },
     {
-      icon: Bot,
+      icon: MessageSquareText,
       title: "AI Assistants",
       desc: "Deploy intelligent assistants for customers, employees, and operations.",
     },
@@ -528,7 +578,10 @@ function HowItWorks() {
     },
   ];
   return (
-    <section id="how-it-works" className="relative border-t border-border bg-muted/30 py-24 md:py-32">
+    <section
+      id="how-it-works"
+      className="relative border-t border-border bg-muted/30 py-24 md:py-32"
+    >
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <SectionEyebrow>How it works</SectionEyebrow>
@@ -577,7 +630,7 @@ function Industries() {
     { icon: Briefcase, name: "Professional Services" },
     { icon: Stethoscope, name: "Healthcare" },
     { icon: Landmark, name: "Financial Services" },
-    { icon: Cpu, name: "Technology" },
+    { icon: Settings2, name: "Technology" },
     { icon: Users, name: "Operations Teams" },
     { icon: Building2, name: "Small & Mid-Sized Businesses" },
   ];
@@ -592,7 +645,7 @@ function Industries() {
             </h2>
           </div>
           <p className="max-w-md text-[15px] leading-relaxed text-muted-foreground">
-            From clinical workflows to financial back-office, Walelai designs systems that respect
+            From clinical workflows to financial back-office, WalelAI designs systems that respect
             the realities of regulated, high-volume environments.
           </p>
         </div>
@@ -620,7 +673,11 @@ function ValueSection() {
   const metrics = [
     { v: "−45%", l: "Reduce manual work", d: "Repetitive tasks routed through automated systems." },
     { v: "10×", l: "Improve response times", d: "AI-assisted triage and intelligent routing." },
-    { v: "+38%", l: "Increase team productivity", d: "Knowledge and tooling at the point of work." },
+    {
+      v: "+38%",
+      l: "Increase team productivity",
+      d: "Knowledge and tooling at the point of work.",
+    },
     { v: "∞", l: "Scale operations efficiently", d: "Systems that grow without linear headcount." },
   ];
   return (
@@ -637,7 +694,7 @@ function ValueSection() {
             AI that delivers real business outcomes
           </h2>
           <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-[oklch(0.78_0.02_260)]">
-            Walelai engagements are measured by impact, not output. Every system we deploy ties to
+            WalelAI engagements are measured by impact, not output. Every system we deploy ties to
             an operational metric the business already cares about.
           </p>
         </div>
@@ -707,8 +764,7 @@ function CaseStudies() {
               <div
                 className="relative h-40 overflow-hidden border-b border-border"
                 style={{
-                  background:
-                    "linear-gradient(135deg, oklch(0.97 0.02 260), oklch(0.93 0.05 265))",
+                  background: "linear-gradient(135deg, oklch(0.97 0.02 260), oklch(0.93 0.05 265))",
                 }}
               >
                 <div className="bg-grid absolute inset-0 opacity-60" />
@@ -767,7 +823,7 @@ function FinalCTA() {
               Ready to put AI to work?
             </h2>
             <p className="mt-4 text-[16.5px] leading-relaxed text-muted-foreground">
-              Discover how Walelai can help your organization automate workflows, improve
+              Discover how WalelAI can help your organization automate workflows, improve
               operations, and unlock measurable value from AI.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -775,14 +831,14 @@ function FinalCTA() {
                 href="#"
                 className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-3 text-[14px] font-medium text-background shadow-[var(--shadow-lift)] transition-transform hover:scale-[1.02]"
               >
-                Schedule a consultation
+                Schedule a Consultation
                 <ArrowRight className="size-4" />
               </a>
               <a
                 href="#solutions"
                 className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-5 py-3 text-[14px] font-medium text-foreground transition-colors hover:bg-muted/50"
               >
-                Explore solutions
+                See Solutions
               </a>
             </div>
           </div>
@@ -795,10 +851,21 @@ function FinalCTA() {
 /* ---------- FOOTER ---------- */
 function Footer() {
   const cols = [
-    { title: "Solutions", links: ["Workflow Automation", "AI Assistants", "Document Intelligence", "Custom Integrations"] },
-    { title: "Industries", links: ["Professional Services", "Healthcare", "Financial Services", "Technology"] },
+    {
+      title: "Solutions",
+      links: [
+        "Workflow Automation",
+        "AI Assistants",
+        "Document Intelligence",
+        "Custom Integrations",
+      ],
+    },
+    {
+      title: "Industries",
+      links: ["Professional Services", "Healthcare", "Financial Services", "Technology"],
+    },
     { title: "About", links: ["Company", "Approach", "Careers", "Press"] },
-    { title: "Contact", links: ["Schedule a consultation", "Support", "Partners", "Security"] },
+    { title: "Contact", links: ["Schedule a Consultation", "Support", "Partners", "Security"] },
   ];
   return (
     <footer className="border-t border-border bg-background">
@@ -807,10 +874,10 @@ function Footer() {
           <div className="col-span-2">
             <div className="flex items-center gap-2">
               <Logo />
-              <span className="text-[15px] font-semibold tracking-tight">Walelai</span>
+              <span className="text-[15px] font-semibold tracking-tight">WalelAI</span>
             </div>
             <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-muted-foreground">
-              Practical AI systems for modern operations.
+              AI Systems. Better Operations. Real Results.
             </p>
           </div>
           {cols.map((c) => (
@@ -834,11 +901,17 @@ function Footer() {
           ))}
         </div>
         <div className="mt-14 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 text-[12.5px] text-muted-foreground md:flex-row md:items-center">
-          <div>© {new Date().getFullYear()} Walelai, Inc. All rights reserved.</div>
+          <div>© {new Date().getFullYear()} WalelAI, Inc. All rights reserved.</div>
           <div className="flex items-center gap-5">
-            <a href="#" className="hover:text-foreground">Privacy</a>
-            <a href="#" className="hover:text-foreground">Terms</a>
-            <a href="#" className="hover:text-foreground">Security</a>
+            <a href="#" className="hover:text-foreground">
+              Privacy
+            </a>
+            <a href="#" className="hover:text-foreground">
+              Terms
+            </a>
+            <a href="#" className="hover:text-foreground">
+              Security
+            </a>
           </div>
         </div>
       </div>
@@ -856,10 +929,7 @@ function SectionEyebrow({ children, dark }: { children: React.ReactNode; dark?: 
           : "border-border bg-muted/60 text-muted-foreground"
       }`}
     >
-      <span
-        className="size-1.5 rounded-full"
-        style={{ background: "var(--gradient-brand)" }}
-      />
+      <span className="size-1.5 rounded-full" style={{ background: "var(--gradient-brand)" }} />
       {children}
     </div>
   );
