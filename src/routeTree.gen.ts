@@ -10,33 +10,78 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SolutionsWorkflowAutomationRouteImport } from './routes/solutions/workflow-automation'
+import { Route as SolutionsDocumentIntelligenceRouteImport } from './routes/solutions/document-intelligence'
+import { Route as SolutionsAiAssistantsRouteImport } from './routes/solutions/ai-assistants'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolutionsWorkflowAutomationRoute =
+  SolutionsWorkflowAutomationRouteImport.update({
+    id: '/solutions/workflow-automation',
+    path: '/solutions/workflow-automation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SolutionsDocumentIntelligenceRoute =
+  SolutionsDocumentIntelligenceRouteImport.update({
+    id: '/solutions/document-intelligence',
+    path: '/solutions/document-intelligence',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SolutionsAiAssistantsRoute = SolutionsAiAssistantsRouteImport.update({
+  id: '/solutions/ai-assistants',
+  path: '/solutions/ai-assistants',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/solutions/ai-assistants': typeof SolutionsAiAssistantsRoute
+  '/solutions/document-intelligence': typeof SolutionsDocumentIntelligenceRoute
+  '/solutions/workflow-automation': typeof SolutionsWorkflowAutomationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/solutions/ai-assistants': typeof SolutionsAiAssistantsRoute
+  '/solutions/document-intelligence': typeof SolutionsDocumentIntelligenceRoute
+  '/solutions/workflow-automation': typeof SolutionsWorkflowAutomationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/solutions/ai-assistants': typeof SolutionsAiAssistantsRoute
+  '/solutions/document-intelligence': typeof SolutionsDocumentIntelligenceRoute
+  '/solutions/workflow-automation': typeof SolutionsWorkflowAutomationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/solutions/ai-assistants'
+    | '/solutions/document-intelligence'
+    | '/solutions/workflow-automation'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/solutions/ai-assistants'
+    | '/solutions/document-intelligence'
+    | '/solutions/workflow-automation'
+  id:
+    | '__root__'
+    | '/'
+    | '/solutions/ai-assistants'
+    | '/solutions/document-intelligence'
+    | '/solutions/workflow-automation'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SolutionsAiAssistantsRoute: typeof SolutionsAiAssistantsRoute
+  SolutionsDocumentIntelligenceRoute: typeof SolutionsDocumentIntelligenceRoute
+  SolutionsWorkflowAutomationRoute: typeof SolutionsWorkflowAutomationRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +93,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/solutions/workflow-automation': {
+      id: '/solutions/workflow-automation'
+      path: '/solutions/workflow-automation'
+      fullPath: '/solutions/workflow-automation'
+      preLoaderRoute: typeof SolutionsWorkflowAutomationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solutions/document-intelligence': {
+      id: '/solutions/document-intelligence'
+      path: '/solutions/document-intelligence'
+      fullPath: '/solutions/document-intelligence'
+      preLoaderRoute: typeof SolutionsDocumentIntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solutions/ai-assistants': {
+      id: '/solutions/ai-assistants'
+      path: '/solutions/ai-assistants'
+      fullPath: '/solutions/ai-assistants'
+      preLoaderRoute: typeof SolutionsAiAssistantsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SolutionsAiAssistantsRoute: SolutionsAiAssistantsRoute,
+  SolutionsDocumentIntelligenceRoute: SolutionsDocumentIntelligenceRoute,
+  SolutionsWorkflowAutomationRoute: SolutionsWorkflowAutomationRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
