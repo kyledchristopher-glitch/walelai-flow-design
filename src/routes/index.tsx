@@ -59,8 +59,8 @@ function Nav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="#" className="flex items-center">
-          <Logo className="h-8 w-auto sm:h-9" />
+        <a href="#" className="flex min-w-0 items-center">
+          <Logo className="h-[34px] w-auto sm:h-10" />
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
@@ -100,15 +100,14 @@ function Logo({
   className?: string;
   variant?: "wordmark" | "full";
 }) {
-  const source =
-    variant === "full" ? "/assets/walelai-logo-full.png" : "/assets/walelai-logo-wordmark.png";
+  const source = variant === "full" ? "/walelai-logo-lockup.png" : "/walelai-logo-wordmark.png";
   const dimensions =
-    variant === "full" ? { width: 1080, height: 700 } : { width: 1040, height: 240 };
+    variant === "full" ? { width: 1101, height: 721 } : { width: 1077, height: 209 };
 
   return (
     <img
       src={source}
-      alt="WalelAI"
+      alt="WalelAI logo"
       className={`block shrink-0 object-contain ${className}`}
       width={dimensions.width}
       height={dimensions.height}
