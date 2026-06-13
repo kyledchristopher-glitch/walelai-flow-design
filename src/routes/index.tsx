@@ -124,6 +124,7 @@ function Hero() {
       <div className="bg-grid parallax-grid absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
       <div className="parallax-orb parallax-orb-one" />
       <div className="parallax-orb parallax-orb-two" />
+      <div className="parallax-orb parallax-orb-three" />
       <div className="relative mx-auto max-w-7xl px-6 pt-20 pb-24 md:pt-28 md:pb-32">
         <div className="mx-auto max-w-3xl text-center animate-fade-up">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1 text-[12px] font-medium text-muted-foreground backdrop-blur">
@@ -160,7 +161,7 @@ function Hero() {
           </div>
         </div>
 
-        <div className="motion-depth relative mx-auto mt-16 max-w-6xl animate-fade-up [animation-delay:120ms]">
+        <div className="dashboard-depth motion-depth relative mx-auto mt-16 max-w-6xl animate-fade-up [animation-delay:120ms]">
           <DashboardVisual />
         </div>
       </div>
@@ -439,17 +440,30 @@ function TrustBar() {
     "Custom Integrations",
     "Process Improvement",
   ];
+  const tickerItems = [...items, ...items, ...items];
+
   return (
     <section className="section-trust premium-divider border-y border-border bg-background">
-      <div className="mx-auto max-w-7xl px-6 py-10">
-        <div className="text-center text-[11.5px] font-medium uppercase tracking-[0.18em] text-muted-foreground">
-          Capabilities trusted by operations leaders
+      <div className="mx-auto max-w-7xl px-6 py-9">
+        <div className="ticker-label text-center text-[11.5px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+          CAPABILITIES TRUSTED BY OPERATIONS LEADERS
         </div>
-        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-4 text-center md:grid-cols-3 lg:grid-cols-6">
-          {items.map((i) => (
-            <div key={i} className="text-[13.5px] font-semibold tracking-tight text-foreground/80">
-              {i}
-            </div>
+        <div className="ticker-mask mt-7 overflow-hidden">
+          <div className="ticker-track flex w-max items-center gap-10 whitespace-nowrap">
+            {tickerItems.map((item, index) => (
+              <div
+                key={`${item}-${index}`}
+                className="ticker-item inline-flex items-center gap-10 text-[13.5px] font-semibold tracking-tight text-foreground/80"
+              >
+                <span>{item}</span>
+                <span className="size-1 rounded-full bg-primary/45" />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="sr-only">
+          {items.map((item) => (
+            <span key={item}>{item}</span>
           ))}
         </div>
       </div>
