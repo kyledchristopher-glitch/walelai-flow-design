@@ -60,7 +60,7 @@ function Nav() {
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
         <a href="#" className="flex min-w-0 items-center">
-          <Logo className="h-[34px] w-auto sm:h-10" />
+          <Logo className="h-9 w-auto sm:h-11" variant="full" />
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
