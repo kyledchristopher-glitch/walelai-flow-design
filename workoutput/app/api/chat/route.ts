@@ -10,6 +10,26 @@ export const dynamic = "force-dynamic";
 // is replaced by a POST to this route, which holds the key and selects the model from the
 // authenticated user's tier.
 export async function POST(req: Request) {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return NextResponse.json(
+      {
+        error: "configuration_missing",
+        detail: "Supabase is not configured for this experimental preview.",
+      },
+      { status: 503 },
+    );
+  }
+
+  if (!process.env.ANTHROPIC_API_KEY) {
+    return NextResponse.json(
+      {
+        error: "configuration_missing",
+        detail: "Model generation is unavailable because ANTHROPIC_API_KEY is not configured.",
+      },
+      { status: 503 },
+    );
+  }
+
   const supabase = await createClient();
   const {
     data: { user },
@@ -35,15 +55,32 @@ export async function POST(req: Request) {
   const tier = (profile?.tier as Tier) || "free";
   const model = modelForTurn(tier, inferredMode, workflowType);
 
-  const resp = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      "x-api-key": process.env.ANTHROPIC_API_KEY!,
-      "anthropic-version": "2023-06-01",
-    },
-    body: JSON.stringify({ model, max_tokens: maxTokens, ...(system ? { system } : {}), messages }),
-  });
+  let resp: Response;
+  try {
+    resp = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-api-key": process.env.ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+      },
+      body: JSON.stringify({
+        model,
+        max_tokens: maxTokens,
+        ...(system ? { system } : {}),
+        messages,
+      }),
+      signal: AbortSignal.timeout(25_000),
+    });
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: "model_unreachable",
+        detail: error instanceof Error ? error.message : "The model provider could not be reached.",
+      },
+      { status: 504 },
+    );
+  }
 
   if (!resp.ok) {
     const detail = await resp.text();
